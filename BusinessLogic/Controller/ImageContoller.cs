@@ -9,7 +9,7 @@ namespace BusinessLogic
 
         public async Task<string[]> GetImage(int projectId, SQLLiteContex context)
         {
-            return await context.Images.Where(c => c.ProjectId == projectId).Select(c => c.ImageURL).ToArrayAsync();
+            return await context.Images.Where(c => c.Project.Id == projectId).Select(c => c.ImageURL).ToArrayAsync();
         }
     }
 }

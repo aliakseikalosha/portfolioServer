@@ -1,3 +1,5 @@
+using BusinessLogic.Models;
+
 namespace Database.Model
 {
     /// <summary>
@@ -7,5 +9,6 @@ namespace Database.Model
     {
         public int Id { get; set; }
         public required string Name { get; set; }
+        public ICollection<ProjectItem> Project { get; } = null!;
     }
 }

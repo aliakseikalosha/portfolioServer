@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Database.Model
 {
     /// <summary>
@@ -6,7 +8,7 @@ namespace Database.Model
     public class ImageItem
     {
         public int Id { get; set; }
-        public required int ProjectId { get; set; }
+        public required ProjectItem Project { get; set; }
         public required string ImageURL { get; set; }
     }
 }

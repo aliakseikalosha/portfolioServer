@@ -31,10 +31,12 @@ namespace PortfolioServer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProjectId");
+
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("Database.Model.PojectItem", b =>
+            modelBuilder.Entity("Database.Model.ProjectItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,6 +63,8 @@ namespace PortfolioServer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TypeId");
+
                     b.ToTable("Projects");
                 });
 
@@ -77,6 +81,38 @@ namespace PortfolioServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Types");
+                });
+
+            modelBuilder.Entity("Database.Model.ImageItem", b =>
+                {
+                    b.HasOne("Database.Model.ProjectItem", "Project")
+                        .WithMany("Images")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Database.Model.ProjectItem", b =>
+                {
+                    b.HasOne("Database.Model.TypeItem", "Type")
+                        .WithMany("Project")
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("Database.Model.ProjectItem", b =>
+                {
+                    b.Navigation("Images");
+                });
+
+            modelBuilder.Entity("Database.Model.TypeItem", b =>
+                {
+                    b.Navigation("Project");
                 });
 #pragma warning restore 612, 618
         }
