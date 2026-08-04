@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 builder.Services.AddDbContext<SQLLiteContex>(options => options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddSingleton<IProjectController, ProjectControllerMock>();
-builder.Services.AddSingleton<IImageController, ImageContollerMock>();
+builder.Services.AddSingleton<IProjectController, ProjectController>();
+builder.Services.AddSingleton<IImageController, ImageContoller>();
 builder.Services.AddControllers();
 
 // Add services to the container.

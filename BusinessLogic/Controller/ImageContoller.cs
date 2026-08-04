@@ -1,10 +1,15 @@
+using Database;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 namespace BusinessLogic
 {
     public class ImageContoller : IImageController
     {
-        public string[] GetImage(int projectId)
+
+        public async Task<string[]> GetImage(int projectId, SQLLiteContex context)
         {
-            throw new NotImplementedException();
+            return await context.Images.Where(c => c.ProjectId == projectId).Select(c => c.ImageURL).ToArrayAsync();
         }
     }
 }

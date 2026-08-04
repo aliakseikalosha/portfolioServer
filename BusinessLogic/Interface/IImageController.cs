@@ -1,7 +1,9 @@
+using Database;
+
 namespace BusinessLogic
 {
     public interface IImageController
     {
-        public string[] GetImage(int projectId);
+        public Task<string[]> GetImage(int projectId, SQLLiteContex context);
     }
 }
