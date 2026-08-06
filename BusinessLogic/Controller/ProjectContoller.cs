@@ -26,12 +26,12 @@ namespace BusinessLogic
         public async Task<Project[]> GetByType(ProjectType type, SQLLiteContex context)
         {
             int typeId = (int)type;
-            return await context.Projects.AsAsyncEnumerable().Where(c => c.Type.Id == typeId).Select(Convert).ToArrayAsync();
+            return await context.Projects.Include(c => c.Type).Where(c => c.Type.Id == typeId).AsAsyncEnumerable().Select(Convert).ToArrayAsync();
         }
 
         private Project Convert(ProjectItem item)
         {
-            return new Project(item.Id, item.Name, item.Description, item.ShortDescription);
+            return new Project(item.Id, item.Name, item.Description, item.ShortDescription, item.ThumbnailURL);
         }
     }
 }

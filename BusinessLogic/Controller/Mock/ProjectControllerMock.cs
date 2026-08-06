@@ -20,6 +20,6 @@ namespace BusinessLogic
             return [.. (await GetAll(context)).Where(c => c.Id % (int)type == 0)];
         }
 
-        private Project CreateProject(int id) => new(id, $"Name:{id}", $"Description:{id}", $"ShortDescription:{id}");
+        private Project CreateProject(int id) => new(id, $"Name:{id}", $"Description:{id}", $"ShortDescription:{id}", "example.png");
     }
 }
